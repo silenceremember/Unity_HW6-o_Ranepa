@@ -8,7 +8,7 @@ public class ObjectInteractionTrigger : MonoBehaviour
     [SerializeField] private SphereCollider _triggerCollider;
     [SerializeField] private float _interactionCooldown = 2f;
     [SerializeField] private GameObject[] _linkedObjects;
-    
+    [SerializeField] private GameObject _hintCanvas;
     private static readonly int LeverToggleParam = Animator.StringToHash("LeverToggle");
     private ThirdPersonController _player;
     private bool _playerInTrigger;
@@ -21,7 +21,6 @@ public class ObjectInteractionTrigger : MonoBehaviour
             Debug.LogError("ObjectInteractionTrigger: Required components not assigned!", this);
         }
 
-        // Проверка привязанных объектов
         if (_linkedObjects != null && _linkedObjects.Length > 0)
         {
             foreach (var obj in _linkedObjects)
@@ -31,6 +30,11 @@ public class ObjectInteractionTrigger : MonoBehaviour
                     Debug.LogWarning("ObjectInteractionTrigger: One of the linked objects is null!", this);
                 }
             }
+        }
+
+        if (_hintCanvas != null)
+        {
+            _hintCanvas.SetActive(false);
         }
     }
 
@@ -73,10 +77,18 @@ public class ObjectInteractionTrigger : MonoBehaviour
             if (_playerInTrigger)
             {
                 _player = player.GetComponent<ThirdPersonController>();
+                if (_hintCanvas != null)
+                {
+                    _hintCanvas.SetActive(true);
+                }
             }
             else
             {
                 _player = null;
+                if (_hintCanvas != null)
+                {
+                    _hintCanvas.SetActive(false);
+                }
             }
         }
     }

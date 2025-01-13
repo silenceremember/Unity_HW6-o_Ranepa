@@ -3488,8 +3488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45da41f0c00956349975991af6477471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1539883785}
-  triggerZone: {fileID: 32833086}
+  _playerController: {fileID: 1539883785}
+  _triggerZone: {fileID: 32833086}
   _sceneToLoad: Level2
 --- !u!43 &36207877
 Mesh:
