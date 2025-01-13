@@ -5,19 +5,18 @@ using StarterAssets;
 public class LevelCompleteTrigger : MonoBehaviour
 {
     [Header("Player References")]
-    [SerializeField] private CharacterController playerController;
+    [SerializeField] private CharacterController _playerController;
     
     [Header("Level Complete Settings")]
-    [SerializeField] private GameObject[] objectsToToggle;
-    [SerializeField] private float menuDelay = 2f;
-    [SerializeField] private PauseManager pauseManager;
+    [SerializeField] private GameObject[] _objectsToToggle;
+    [SerializeField] private float _menuDelay = 2f;
+    [SerializeField] private PauseManager _pauseManager;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other == playerController)
+        if (other == _playerController)
         {
-            // Инвертируем состояние всех объектов
-            foreach (var obj in objectsToToggle)
+            foreach (var obj in _objectsToToggle)
             {
                 if (obj != null)
                 {
@@ -31,10 +30,10 @@ public class LevelCompleteTrigger : MonoBehaviour
 
     private IEnumerator ShowVictoryMenu()
     {
-        yield return new WaitForSeconds(menuDelay);
-        if (pauseManager != null)
+        yield return new WaitForSeconds(_menuDelay);
+        if (_pauseManager != null)
         {
-            pauseManager.OnVictory();
+            _pauseManager.OnVictory();
         }
     }
 }

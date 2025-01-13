@@ -4,44 +4,38 @@ using StarterAssets;
 public class JumpBooster : MonoBehaviour
 {
     [Header("Jump Settings")]
-    [SerializeField] private float jumpHeightBonus = 0.5f;
+    [SerializeField] private float _jumpHeightBonus = 0.5f;
 
     [Header("Player References")]
-    [SerializeField] private ThirdPersonController playerController;
-    [SerializeField] private CharacterController characterController;
+    [SerializeField] private ThirdPersonController _playerController;
+    [SerializeField] private CharacterController _characterController;
 
     [Header("Booster Objects")]
-    [SerializeField] private Collider triggerCollider;
-    [SerializeField] private GameObject visualObject;
+    [SerializeField] private Collider _triggerCollider;
+    [SerializeField] private GameObject _visualObject;
     
     private void OnTriggerEnter(Collider other)
     {
-        // Проверяем, что в триггер вошел именно наш игрок
-        if (other == characterController)
+        if (other == _characterController)
         {
-            // Увеличиваем высоту прыжка
-            playerController.JumpHeight += jumpHeightBonus;
+            _playerController.JumpHeight += _jumpHeightBonus;
             
-            // Деактивируем объект
-            visualObject.SetActive(false);
+            _visualObject.SetActive(false);
             
-            // Отключаем коллайдер
-            triggerCollider.enabled = false;
+            _triggerCollider.enabled = false;
         }
     }
 
     private void OnValidate()
     {
-        // Автоматически получаем коллайдер, если он не назначен
-        if (triggerCollider == null)
+        if (_triggerCollider == null)
         {
-            triggerCollider = GetComponent<Collider>();
+            _triggerCollider = GetComponent<Collider>();
         }
 
-        // Автоматически получаем визуальный объект, если он не назначен
-        if (visualObject == null)
+        if (_visualObject == null)
         {
-            visualObject = gameObject;
+            _visualObject = gameObject;
         }
     }
 }

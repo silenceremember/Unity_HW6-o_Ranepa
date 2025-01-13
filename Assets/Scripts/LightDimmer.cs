@@ -22,9 +22,7 @@ public class LightDimmer : MonoBehaviour
         
         if (distance <= _startDimDistance)
         {
-            // Вычисляем процент затухания от 0 до 1
             float dimAmount = Mathf.InverseLerp(_fullDimDistance, _startDimDistance, distance);
-            // Применяем затухание к базовой интенсивности
             _light.intensity = _baseIntensity * dimAmount;
         }
         else

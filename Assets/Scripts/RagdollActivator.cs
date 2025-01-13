@@ -10,8 +10,8 @@ public class RagdollActivator : MonoBehaviour
     [SerializeField] private float _deathMenuDelay = 2f;
 
     [Header("VFX Settings")]
-    [SerializeField] private GameObject _deathVFX; // Ссылка на VFX GameObject
-    [SerializeField] private float _vfxDuration = 2f; // Опционально: время работы эффекта
+    [SerializeField] private GameObject _deathVFX;
+    [SerializeField] private float _vfxDuration = 2f;
 
     [Header("Ragdoll Wizard Fields")]
     [SerializeField] private Transform _pelvis;
@@ -75,7 +75,6 @@ public class RagdollActivator : MonoBehaviour
         _ragdollRigidbodies = rbList.ToArray();
         _ragdollColliders = colList.ToArray();
 
-        // Убедимся, что VFX выключен при старте
         if (_deathVFX != null)
             _deathVFX.SetActive(false);
     }
@@ -104,11 +103,9 @@ public class RagdollActivator : MonoBehaviour
         foreach (var col in _ragdollColliders)
             col.enabled = true;
 
-        // Активируем VFX
         if (_deathVFX != null)
         {
             _deathVFX.SetActive(true);
-            // Опционально: выключаем VFX через заданное время
             if (_vfxDuration > 0)
                 StartCoroutine(DisableVFX());
         }

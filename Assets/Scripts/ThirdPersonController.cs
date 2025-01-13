@@ -481,7 +481,6 @@ namespace StarterAssets
                 _controller.radius
             );
             
-            // Используем BoxCast
             if (Physics.BoxCast(
                 checkPosition,
                 boxHalfExtents,
@@ -547,7 +546,6 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                // Выбираем массив — если на воде, берём Plop-звуки, иначе обычные
                 AudioClip[] clipsToUse = OnWater ? WaterFootstepAudioClips : FootstepAudioClips;
                 
                 if (clipsToUse.Length > 0)
@@ -585,7 +583,6 @@ namespace StarterAssets
             {
                 OnWater = true;
 
-                // Если на момент входа в воду персонаж "в воздухе", проиграем звук воды
                 if (!Grounded)
                 {
                     AudioSource.PlayClipAtPoint(
@@ -601,7 +598,6 @@ namespace StarterAssets
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
             {
-                // Если на момент выхода из воды персонаж "в воздухе", проиграем звук воды
                 if (!Grounded)
                 {
                     AudioSource.PlayClipAtPoint(

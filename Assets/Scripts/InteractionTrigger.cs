@@ -9,7 +9,7 @@ public class InteractionTrigger : MonoBehaviour
     [SerializeField] private float _interactionCooldown = 2f;
     [SerializeField] private Animator[] _linkedAnimators;
 
-    private static readonly int LeverToggleParam = Animator.StringToHash("LeverToggle");
+    private static readonly int _leverToggleParam = Animator.StringToHash("LeverToggle");
     private ThirdPersonController _player;
     private bool _playerInTrigger;
     private bool _canInteract = true;
@@ -85,20 +85,17 @@ public class InteractionTrigger : MonoBehaviour
     {
         if (_leverAnimator != null)
         {
-            // Получаем новое состояние рычага (инвертируем текущее)
-            bool newState = !_leverAnimator.GetBool(LeverToggleParam);
+            bool newState = !_leverAnimator.GetBool(_leverToggleParam);
             
-            // Устанавливаем состояние для основного рычага
-            _leverAnimator.SetBool(LeverToggleParam, newState);
+            _leverAnimator.SetBool(_leverToggleParam, newState);
             
-            // Устанавливаем то же состояние для всех связанных аниматоров
             if (_linkedAnimators != null)
             {
                 foreach (var animator in _linkedAnimators)
                 {
                     if (animator != null)
                     {
-                        animator.SetBool(LeverToggleParam, newState);
+                        animator.SetBool(_leverToggleParam, newState);
                     }
                 }
             }

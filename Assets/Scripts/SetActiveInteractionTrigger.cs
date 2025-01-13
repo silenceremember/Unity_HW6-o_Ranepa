@@ -85,20 +85,16 @@ public class ObjectInteractionTrigger : MonoBehaviour
     {
         if (_leverAnimator != null)
         {
-            // Получаем новое состояние рычага (инвертируем текущее)
             bool newState = !_leverAnimator.GetBool(LeverToggleParam);
             
-            // Устанавливаем состояние для рычага
             _leverAnimator.SetBool(LeverToggleParam, newState);
             
-            // Инвертируем активность для всех связанных объектов
             if (_linkedObjects != null)
             {
                 foreach (var obj in _linkedObjects)
                 {
                     if (obj != null)
                     {
-                        // Инвертируем текущее состояние активности объекта
                         obj.SetActive(!obj.activeSelf);
                     }
                 }
