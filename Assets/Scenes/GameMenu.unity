@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a062e3699699a43b5e37ab0c2e666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level3
+  _sceneToLoad: Level3
 --- !u!224 &4370665176250199928 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5465641680475492940, guid: 63693c35b26e9324b8b9a88fd2d1f60a, type: 3}
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a062e3699699a43b5e37ab0c2e666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level2
+  _sceneToLoad: Level2
 --- !u!224 &4370665177194388462 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1625189052091787223, guid: efc5b136b11e7b241843d48df034df6a, type: 3}
@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a062e3699699a43b5e37ab0c2e666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level1
+  _sceneToLoad: Level1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

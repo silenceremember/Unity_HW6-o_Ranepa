@@ -1,5 +1,6 @@
 using UnityEngine;
 using StarterAssets;
+using System.Collections;
 
 public class JumpBooster : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class JumpBooster : MonoBehaviour
 
     [Header("Booster Objects")]
     [SerializeField] private Collider _triggerCollider;
-    [SerializeField] private GameObject _visualObject;
+    [SerializeField] private MeshRenderer _visualObject;
+    [SerializeField] private GameObject _pickupVFX;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -20,10 +22,21 @@ public class JumpBooster : MonoBehaviour
         {
             _playerController.JumpHeight += _jumpHeightBonus;
             
-            _visualObject.SetActive(false);
-            
+            _visualObject.enabled = false;
             _triggerCollider.enabled = false;
+
+            if (_pickupVFX != null)
+            {
+                StartCoroutine(ShowPickupVFX());
+            }
         }
+    }
+
+    private IEnumerator ShowPickupVFX()
+    {
+        _pickupVFX.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        _pickupVFX.SetActive(false);
     }
 
     private void OnValidate()
@@ -35,7 +48,7 @@ public class JumpBooster : MonoBehaviour
 
         if (_visualObject == null)
         {
-            _visualObject = gameObject;
+            _visualObject = GetComponent<MeshRenderer>();
         }
     }
 }
